@@ -18,8 +18,8 @@ struct Person {
 }
 
 class DataManager {
-    static let firstNames: Set<String> = ["Leo", "Cristiano", "Zlatan", "Maria", "Vladimir", "German", "Ilon", "Mark", "Tim"]
-    static let lastNames: Set<String> = ["Messi", "Ronaldo", "Ibrahimovic", "Sharapova", "Putin", "Gref", "Mask", "Zuckerberg", "Cook"]
+    static let firstNames: Set<String> = ["Leo", "Cristiano", "Zlatan", "Vladimir", "Vladimir", "German", "Ilon", "Mark", "Tim"]
+    static let lastNames: Set<String> = ["Messi", "Ronaldo", "Ibrahimovic", "Sharapov", "Zolotov", "Tkachenko", "Mask", "Zuckerberg", "Cook"]
     static let emails: Set<String> = ["mail.ru", "gmail.com", "yandex.ru", "icloud.com", "rambler.ru"]
     static var persons = [Person]()
     
@@ -35,7 +35,7 @@ class DataManager {
             let lastName = lastNames.popFirst()!
             persons.append(
                 Person(
-                    firstName: firstNames.popFirst()!,
+                    firstName: firstNames.popFirst() ?? "",
                     lastName: lastName,
                     phoneNumber: "+" + String(Int.random(in: 100000000...999999999)),
                     email: lastName.lowercased() + "@" + emails.randomElement()!

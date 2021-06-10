@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonsTableViewController: UITableViewController {
+class PersonsTableViewController: UITableViewController{
     
     var persons = DataManager.getPersons()
 
@@ -16,7 +16,13 @@ class PersonsTableViewController: UITableViewController {
         
         navigationItem.leftBarButtonItem = editButtonItem
         
+        let addSettings = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(toAdd))
+        navigationItem.rightBarButtonItem = addSettings
     }
+    @objc func toAdd() {
+        
+    }
+    
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -28,7 +34,6 @@ class PersonsTableViewController: UITableViewController {
             persons.remove(at: indexPath.row)
             self.tableView.reloadData()
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,7 +44,8 @@ class PersonsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath)
         
         cell.textLabel?.text = persons[indexPath.row].fullName
-        
+        cell.imageView?.image = #imageLiteral(resourceName: "phone-3594206_960_720.jpg")
+
         return cell
     }
     
