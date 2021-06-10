@@ -35,7 +35,7 @@ class DataManager {
             let lastName = lastNames.popFirst()!
             persons.append(
                 Person(
-                    firstName: firstNames.popFirst() ?? "",
+                    firstName: firstNames.popFirst() ?? "Alex",
                     lastName: lastName,
                     phoneNumber: "+" + String(Int.random(in: 100000000...999999999)),
                     email: lastName.lowercased() + "@" + emails.randomElement()!

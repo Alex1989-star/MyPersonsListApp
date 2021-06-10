@@ -7,12 +7,18 @@
 
 import UIKit
 
-class PersonsTableViewController: UITableViewController{
+class PersonsTableViewController: UITableViewController {
     
     var persons = DataManager.getPersons()
+    
+    lazy var searchBar = UISearchBar(frame: CGRect.zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.placeholder = "Search"
+        navigationItem.titleView = searchBar
+        
         
         navigationItem.leftBarButtonItem = editButtonItem
         
@@ -21,11 +27,6 @@ class PersonsTableViewController: UITableViewController{
     }
     @objc func toAdd() {
         
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
