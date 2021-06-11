@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonsTableViewController: UITableViewController {
+class PersonsTableViewController: UITableViewController, UITextFieldDelegate {
     
     var persons = DataManager.getPersons()
     
@@ -19,15 +19,21 @@ class PersonsTableViewController: UITableViewController {
         searchBar.placeholder = "Search"
         navigationItem.titleView = searchBar
         
-        
         navigationItem.leftBarButtonItem = editButtonItem
         
         let addSettings = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(toAdd))
         navigationItem.rightBarButtonItem = addSettings
+        
     }
     @objc func toAdd() {
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        }
+
+    
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -45,7 +51,7 @@ class PersonsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath)
         
         cell.textLabel?.text = persons[indexPath.row].fullName
-        cell.imageView?.image = #imageLiteral(resourceName: "phone-3594206_960_720.jpg")
+        cell.imageView?.image = UIImage(systemName: "phone")
 
         return cell
     }

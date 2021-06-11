@@ -19,5 +19,7 @@ class DetailViewController: UIViewController {
         self.title = person.fullName
         phoneLabel.text = person.phoneNumber
         emailLabel.text = person.email
+        
+        
     }
 }
