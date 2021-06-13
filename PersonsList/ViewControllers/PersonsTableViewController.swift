@@ -55,6 +55,28 @@ class PersonsTableViewController: UITableViewController {
         persons.insert(item, at: destinationIndexPath.row)
     }
     
+    //Mark: Copy/Paste
+    
+    override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        if action == #selector(copy(_:)) {
+            print("Copy")
+            return true
+        }
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        if action == #selector(copy(_:)) {
+            let cell = tableView.cellForRow(at: indexPath)
+            let pasteBoard = UIPasteboard.general
+            pasteBoard.string = cell?.textLabel?.text
+        }
+    }
+    
    
     // Mark: Settings tableView
     
