@@ -15,6 +15,8 @@ class PersonsDetailTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
+    // Mark: Settings tableView
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return persons.count
     }

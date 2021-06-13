@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonsTableViewController: UITableViewController, UITextFieldDelegate {
+class PersonsTableViewController: UITableViewController {
     
     var persons = DataManager.getPersons()
     
@@ -34,7 +34,7 @@ class PersonsTableViewController: UITableViewController, UITextFieldDelegate {
         }
 
     
-    
+  //Mark: Delete
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
         
@@ -42,6 +42,21 @@ class PersonsTableViewController: UITableViewController, UITextFieldDelegate {
             self.tableView.reloadData()
         }
     }
+    
+    //Mark: Move
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let item = persons[sourceIndexPath.row]
+        persons.remove(at: sourceIndexPath.row)
+        persons.insert(item, at: destinationIndexPath.row)
+    }
+    
+   
+    // Mark: Settings tableView
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         persons.count
