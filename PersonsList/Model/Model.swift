@@ -32,13 +32,13 @@ class DataManager {
         var lastNames = DataManager.lastNames
         
         while !firstNames.isEmpty || !lastNames.isEmpty {
-            let lastName = lastNames.popFirst()!
+            let lastName = lastNames.popFirst()
             persons.append(
                 Person(
                     firstName: firstNames.popFirst() ?? "Alex",
-                    lastName: lastName,
+                    lastName: lastName ?? "",
                     phoneNumber: "+" + String(Int.random(in: 100000000...999999999)),
-                    email: lastName.lowercased() + "@" + emails.randomElement()!
+                    email: lastName?.lowercased() ?? "" + "@" + emails.randomElement()!
                 )
             )
         }
